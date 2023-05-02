@@ -103,6 +103,33 @@ select course_title, level from all_courses order by level_range desc;
 
 -- Count the courses in each level
 select level,count(level)Course_Level from all_courses group by level_range;
+-- Count the courses in each level
+select level,count(level)Course_Level from all_courses group by level_range;
+
+-- use of rank function
+select course_title ,rank() over(order by rating desc) ranking from all_courses order by rating desc limit 100;
+
+-- use of dense rank function to find the rank of courses
+select course_title , dense_rank() over(order by rating desc) denserank from all_courses;
+
+-- use of rank function to find the rank of the course according to the subject
+select course_title,subject,rank() over(partition by subject order by rating desc)subject_wise_rank from all_courses;
+
+-- use dense rank to find the rank of each course subject wise on the basis of rating
+select course_title, subject, dense_rank() over(partition by subject order by rating desc)denserank from all_courses;
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
